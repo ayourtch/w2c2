@@ -5159,9 +5159,9 @@ wasmCWriteDataSegments(
                     /* TODO: add support for multiple modules */
                     wasmCWriteFileDataSegmentName(file, dataSegmentIndex);
                     if (pretty) {
-                        fprintf(file, " = ds + %llu", byteOffset);
+                        fprintf(file, " = ds + %llu;\n", byteOffset);
                     } else {
-                        fprintf(file, "=ds+%llu", byteOffset);
+                        fprintf(file, "= ds+%llu;\n", byteOffset);
                     }
                     byteOffset += dataSegment.bytes.length;
                     break;
@@ -5191,12 +5191,12 @@ wasmCWriteDataSegmentsFromSection(
     switch (mode) {
         case wasmDataSegmentModeGNULD: {
             fputs("extern char _binary_datasegments_start[];\n\n", file);
-            fputs("static char* ds = _binary_datasegments_start;\n", file);
+            fputs("#define ds _binary_datasegments_start\n", file);
             break;
         }
         case wasmDataSegmentModeSectcreate1: {
             fputs("extern char data_segments_data __asm(\"section$start$__DATA$__datasegments\");\n\n", file);
-            fputs("static char* ds = &data_segments_data;\n", file);
+            fputs("#define ds  &data_segments_data\n", file);
             break;
         }
         case wasmDataSegmentModeSectcreate2: {

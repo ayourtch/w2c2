@@ -1,6 +1,6 @@
 CFLAGS += -I../../w2c2 -O0 -g
-LDFLAGS += -lm -L../../wasi -lw2c2wasi
-W2C2 ?= ../../w2c2/w2c2
+LDFLAGS += -lm -L../../wasi/build -lw2c2wasi
+W2C2 ?= ../../w2c2/build/w2c2
 
 MODE ?= gnu-ld
 

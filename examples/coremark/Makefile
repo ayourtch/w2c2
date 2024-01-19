@@ -1,6 +1,6 @@
-LDFLAGS += -lm -L../../wasi -lw2c2wasi
+LDFLAGS += -lm -L../../../w2c2/wasi/build/ -lw2c2wasi
 CFLAGS += -O3
-W2C2 ?= ../../w2c2/w2c2
+W2C2 ?= ../../w2c2/build//w2c2
 
 coremark: coremark.o main.o
 	$(CC) $^ -o coremark $(LDFLAGS)
